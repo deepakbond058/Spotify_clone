@@ -10,7 +10,7 @@ A simple music player app that lets users play songs directly from their local m
 
 1. **Clone the Repository:**
    ```bash
-   git clone https://github.com/your-username/local-music-player.git
+   git clone https://github.com/deepakbond058/Spotify_clone.git
    cd local-music-player
    ```
 
