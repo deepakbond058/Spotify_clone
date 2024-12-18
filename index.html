@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Spotify clone</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <main>
+      <header>
+        <img width="40" src="/assets/svgFolder/logo.svg" alt="logo" />
+
+        <div class="home-circle">
+          <img width="40" src="/assets/svgFolder/home.svg" alt="home" />
+        </div>
+
+        <div class="search-bar">
+          <img width="40" src="/assets/svgFolder/search1.svg" alt="search1" />
+          <input type="text" placeholder="What do you want to play?" />
+          <img width="40" src="/assets/svgFolder/search2.svg" alt="search2" />
+        </div>
+
+        <div class="header-button">
+          <button>Sign up</button>
+          <button>Log in</button>
+        </div>
+      </header>
+
+      <section class="left">
+        <div class="lefthead">
+          <img src="/assets/svgFolder/playlist.svg" alt="library" />
+          <h3>Playing Now</h3>
+          <img src="/assets/svgFolder/spotifyhamEmpty.svg" alt="">
+        </div>
+
+        <div class="leftfoot">
+          <ul></ul>
+        </div>
+      </section>
+
+      <section class="right">
+        <div class="righthead">
+          <img src="assets/svgFolder/hamburgerX.svg" alt="ham">
+          <h2>Today's biggest hits</h2>
+        </div>
+        <ul class="rightfoot"></ul>
+      </section>
+
+      <footer>
+
+        <div class="playingSongInfo">
+          <img src="" alt="music" />
+          <span></span>
+          <span></span>
+        </div>
+
+        <div class="playGroup">
+          <img src="/assets/svgFolder/shufflewhite.svg" alt="">
+          <img src="/assets/svgFolder/previous.svg" alt="" />
+          <img src="/assets/svgFolder/play.svg" alt="" />
+          <img src="/assets/svgFolder/next.svg" alt="" />
+          <img src="/assets/svgFolder/loop.svg" alt="" />
+        </div>
+
+        <div class="playBar">
+          <span class="currentTime">--:--</span>
+          <input class="rangebar" value="0" min="0" max="1000" type="range" />
+          <span class="duration">--:--</span>
+        </div>
+
+        <div class="volume">
+          <img src="/assets/svgFolder/volumeHigh.svg" alt="vol" />
+          <input min="0" max="1" step="0.01" type="range" />
+        </div>
+      </footer>
+    </main>
+    <script src="/script.js"></script>
+  </body>
+</html>

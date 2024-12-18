@@ -1,0 +1,559 @@
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #555 #1a1a1a;
+  font-family: Helvetica Neue, helvetica, arial, Hiragino Kaku Gothic ProN,
+    Meiryo, MS Gothic;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #000;
+}
+
+main {
+  display: grid;
+  height: 100vh;
+  width: 100vw;
+  /* needed for accounting the extra padding through box sizing */
+  /* grid-template-columns: 33% calc(67% - 1vw); no need this as only height need to fixed value as childrens need it */
+  grid-template-columns: 1fr 2fr;
+  grid-template-rows: 10% calc(90% - 1vw);
+  /* accounting for the gap given by grids */
+  gap: 1vw;
+  padding: 1vw;
+  color: white;
+  transition: all .3s ease-in-out;
+}
+
+main > * {
+  background-color: #121212;
+  border-radius: 10px;
+  transition: all .3s ease-in-out;
+}
+main img {
+  height: 70%;
+  width: auto;
+}
+header {
+  grid-area: 1/1 / span 1 / span 2;
+  display: grid;
+  background-color: #000;
+  place-items: center;
+  gap: 0.5vw;
+  /*  align-items: center forces height:min-content so set height explicitly on items you don't want to change height  */
+  /*  justify-items: center forces width:min-content so set width explicitly on items you don't want to change width  */
+  grid-template-columns: 1fr 1fr 4fr 4fr;
+  grid-template-rows: 100%;
+}
+
+header .home-circle {
+  display: grid;
+  aspect-ratio: 1/1;
+  /* width/height */
+  background-color: #1f1f1f;
+  height: 100%;
+  border-radius: 50%;
+  place-items: center;
+  /* place-content: center;
+  squishes the percentage height only works for fixed heights width */
+}
+
+header .home-circle:hover {
+  scale: 1.08;
+  cursor: pointer;
+}
+
+header .search-bar {
+  display: grid;
+  align-items: center;
+  grid-template-columns: 100%;
+  grid-template-rows: 100%;
+  width: 100%;
+  height: 100%;
+  /* setting above unit as 1fr will not force the precentage height on children */
+}
+
+header .search-bar > :nth-child(1) {
+  grid-area: 1/1 / span 1 / span 1;
+  position: relative;
+  z-index: 1;
+  justify-self: left;
+  margin-left: 3%;
+}
+
+header .search-bar > :nth-child(3) {
+  grid-area: 1/1 / span 1 / span 1;
+  justify-self: right;
+  margin-right: 3%;
+}
+
+header .search-bar > input {
+  grid-area: 1/1 / span 1 / span 1;
+  background-color: #1f1f1f;
+  border-radius: 50px;
+  border: none;
+  outline: none;
+  width: 100%;
+  height: 100%;
+  padding: 0 20%;
+  color: white;
+  transition: background-color 0.5s ease-out;
+  font-size: 1em;
+}
+
+header .search-bar > input:focus + img {
+  filter: brightness(2);
+}
+header .search-bar > input:focus {
+  border: 2px solid white;
+}
+
+header .search-bar:hover > input {
+  background-color: #2a2a2a;
+}
+
+header .search-bar:hover > :nth-child(1) {
+  filter: brightness(200%);
+}
+
+header .header-button {
+  display: grid;
+  grid-template-columns: 50% calc(50% - 0.5vw);
+  grid-template-rows: 100%;
+  width: 100%;
+  height: 100%;
+  gap: 0.5vw;
+  place-items: center;
+}
+
+header .header-button * {
+  width: 100%;
+  height: 100%;
+  border: none;
+  font-weight: bold;
+  border-radius: 50px;
+  font-size: 1em;
+}
+
+header .header-button > :nth-child(1) {
+  background-color: #1f1f1f;
+  color: white;
+}
+
+header .header-button > *:hover {
+  scale: 1.05;
+}
+
+section.left {
+  grid-area: 2/1 / span 1 / span 1;
+  display: grid;
+  width: 100%;
+  grid-template-rows: 10% calc(90% - 1vw);
+  row-gap: 1vw;
+  background-color: #000; 
+}
+
+section.left > * {
+  background-color: #121212;
+  border-radius: 10px;
+}
+
+section.left .lefthead{
+  display: grid;
+  /* grid-template-columns: 20% 77%; no need this in fr units gap is accounted but not in % units*/
+  grid-template-columns: 1fr 4fr 1fr;
+  grid-template-rows: 100%;
+  column-gap: 3%;
+  place-items: center;
+}
+
+
+section.left .lefthead > :nth-child(2){
+  font-size: 1.2em;
+}
+section.left .lefthead > :nth-child(3){
+  display: none;
+}
+
+section.left .leftfoot {
+  overflow-y: hidden;
+  /* to hide pointy scroll bars */
+}
+section.left .leftfoot ul {
+  list-style-type: none;
+  overflow-y: auto;
+  height: 100%;
+  /* height is needed to enable scrolling */
+}
+
+section.left .leftfoot li {
+  display: grid;
+  height: auto;
+  width: 100%;
+  column-gap: 3%;
+  padding: 3% 0;
+  grid-template-columns: 1fr 4fr;
+  grid-template-rows: 50% 50%;
+  cursor: pointer;
+  align-items: center;
+  justify-items: center;
+}
+
+section.left .leftfoot li > :nth-child(1) {
+  grid-area: 1/1 / span 2 / span 1;
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+}
+
+section.left .leftfoot li > :nth-child(2) {
+  grid-area: 1/1 / span 2 / span 1;
+  opacity: 0;
+}
+
+section.left .leftfoot li > :nth-child(3) {
+  justify-self: left;
+  align-self: self-end;
+  grid-area: 1/2 / span 1 / span 1;
+}
+
+section.left .leftfoot li > :nth-child(4) {
+  justify-self: left;
+  align-self: normal;
+  grid-area: 2/2 / span 1 / span 1;
+  font-size: 0.6em;
+  color: #9c9c9c;
+}
+
+section.left .leftfoot li:hover {
+  background-color: #1f1f1f;
+
+  > :nth-child(1) {
+    opacity: 0.4;
+  }
+
+  > :nth-child(2) {
+    opacity: 1;
+  }
+}
+
+section.right {
+  grid-area: 2/2 / span 1 / span 1;
+  display: grid;
+  grid-template-rows: 10% 90%;
+  grid-template-columns: 1fr;
+  background-color: #121212;
+  padding-top: 1vw;
+  overflow: hidden;
+}
+
+section.right .righthead {
+  display: block;
+  /* grid-template-columns: 20% 77%; no need this inf fr units gap is accounted but not in % units*/
+  grid-template-columns: 1fr 8fr;
+  grid-template-rows: 100%;
+  place-self: center;
+}
+
+section.right .righthead > :nth-child(1){
+  transition: rotate 0.5s ease-in;
+  display: none;
+  &:hover{
+    rotate: 90deg;
+  }
+}
+
+section.right .righthead > :nth-child(2){
+  font-size: 1.1em;
+}
+
+section.right ul {
+  list-style-type: none;
+  display: grid;
+  padding: 1vw;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  overflow-y: auto;
+  gap: 1vw;
+}
+section.right ul li {
+  display: grid;
+  border-radius: 10px;
+  padding: 1vw;
+  row-gap: 1vw;
+  /* grid-template-rows: auto auto auto; */
+  /* need % values to get evenly heights on li card */
+}
+
+section.right ul li > :nth-child(1) {
+  grid-area: 1/1 / span 1 / span 1;
+  border-radius: 10px;
+  height: auto;
+  width: 100%;
+}
+
+section.right ul li > :nth-child(2) {
+  grid-area: 1/1 / span 1 / span 1;
+  justify-self: end;
+  opacity: 0;
+  align-self: end;
+  transition: all 0.4s ease-out;
+  height: auto;
+  width: 40%;
+}
+
+section.right ul li > :nth-child(3) {
+  grid-area: 2/1 / span 1 / span 1;
+}
+
+section.right ul li > :nth-child(4) {
+  grid-area: 3/1 / span 1 / span 1;
+  color: #9c9c9c;
+  font-size: 0.6em;
+}
+
+section.right ul li:hover {
+  background-color: #1f1f1f;
+
+  > :nth-child(2) {
+    opacity: 1;
+    translate: 0 -25%;
+  }
+
+  > :nth-child(2):hover {
+    scale: 1.05;
+    filter: brightness(1.2);
+  }
+}
+/* on purpose increased specificity */
+main  footer img {
+  height: 100%;
+}
+
+footer {
+  grid-area: 3/1 / span 1 / span 2;
+  display: none;
+  grid-template-rows: calc(80% - 0.5vw) 20%;
+  grid-template-columns: 2fr 6fr 2fr;
+  place-items: center;
+  gap: 0.5vw;
+}
+
+footer .playGroup img:hover {
+  filter: brightness(0.8);
+}
+footer .playingSongInfo {
+  grid-area: 1/1 / span 2 / span 1;
+  display: grid;
+  height: 100%;
+  width: 100%;
+  grid-template-columns: 1fr 2fr;
+  grid-template-rows: 50% 50%;
+
+  > :nth-child(1) {
+    grid-area: 1/1 / span 2 / span 1;
+    width: 100%;
+    object-fit: contain;
+  }
+
+  > :nth-child(2) {
+    align-self:self-end ;
+    grid-area: 1/2 / span 1 / span 1;
+  }
+  
+  > :nth-child(3) {
+    grid-area: 2/2 / span 1 / span 1;
+    font-size: 0.6em;
+    color: #9c9c9c;
+  }
+}
+footer .playGroup {
+  grid-area: 1/2 / span 1 / span 1;
+  height: 100%;
+  display: grid;
+  align-items: center;
+  justify-items: center;
+  justify-content: center;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+
+  > :nth-child(1) {
+    grid-area: 1/1 / span 1 / span 1;
+    height: 50%;
+  }
+  > :nth-child(2) {
+    grid-area: 1/2 / span 1 / span 1;
+  }
+
+  > :nth-child(3) {
+    grid-area: 1/3 / span 1 / span 1;
+  }
+
+  > :nth-child(4) {
+    grid-area: 1/4 / span 1 / span 1;
+  }
+
+  > :nth-child(5) {
+    grid-area: 1/5 / span 1 / span 1;
+    height: 50%;
+  }
+}
+footer .playBar {
+  grid-area: 2/2 / span 1 / span 1;
+  display: grid;
+  align-items: center;
+  width: 90%;
+  grid-template-columns: 1fr 8fr 1fr;
+}
+
+.playBar .currentTime {
+  font-size: 0.8em;
+  justify-self: center;
+}
+
+.playBar .rangebar {
+  /* limited not working for safari browsers */
+  accent-color: #74992e;
+  height: 2px;
+  cursor: pointer;
+}
+
+.playBar .duration {
+  justify-self: center;
+  font-size: 0.8em;
+}
+
+footer .volume {
+  grid-area: 1/3 / span 2 / span 1;
+  display: grid;
+  grid-template-columns: 1fr 9fr;
+  grid-template-rows: 100%;
+  width: 100%;
+  height: 30%;
+  align-items: center;
+  justify-items: center;
+}
+
+.volume input {
+  accent-color: #74992e;
+  height: 2px;
+  width: 80%;
+  cursor: pointer;
+}
+
+@media screen and (min-width: 2560px) {
+  :root {
+    font-size: 36px;
+  }
+}
+
+@media screen and (max-width: 2560px) {
+  :root {
+    font-size: 18px;
+  }
+}
+
+
+@media screen and (max-width: 1200px) {
+
+  header {
+    grid-template-columns: 2fr 2fr 6fr;
+    grid-template-rows: 50% calc(50% - 0.5vw);
+
+    > .search-bar {
+      grid-area: 2/1/span 1/span 3;
+    }
+  }
+
+  section.right ul {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+
+  footer {
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: calc(45% - 1vw) 10% 45% ;
+    
+    .playingSongInfo {
+      grid-area: 1/1 / span 1 / span 1;
+   
+    }
+        
+    .volume {
+      grid-area: 1/2 / span 1 / span 1;
+      height: 60%;
+      width: 50%;
+      justify-self: self-end;
+    }
+
+    .playBar {
+      grid-area: 2/1 / span 1 / span 2;
+    }
+
+    .playGroup {
+      grid-area: 3/1 / span 1 / span 2;
+    }
+
+  }
+}
+
+@media screen and (max-width: 800px) {
+
+  main{
+    grid-template-columns: 1fr;
+    column-gap: 0;
+  }
+
+  section.left {
+    display: none;
+    .lefthead  {
+    grid-template-columns:4fr 1fr;
+    justify-items: center;
+    >:nth-child(1)  {
+      display: none;
+    }
+    >:nth-child(3)  {
+      display: block;
+    }
+  }
+  }
+
+  section.right .righthead{
+    display: grid;
+    place-self: normal;
+    place-items: center;
+
+    >:nth-child(1){
+      display: block;
+    }
+    ul {
+      grid-template-columns: 1fr 1fr;
+    }
+    }
+ 
+
+  footer {
+    grid-template-columns: 1fr;
+    grid-template-rows: 50% 10% 20% calc(20% - 1.5vw);
+
+    .playingSongInfo {
+      grid-area: 1/1 / span 1 / span 1;
+    }
+    
+    .playBar {
+      grid-area: 2/1 / span 1 / span 1;
+    }
+
+    .playGroup {
+      grid-area: 3/1 / span 1 / span 1;
+    }
+        
+    .volume {
+      grid-area: 4/1 / span 1 / span 1;
+      height: 60%;
+      width: 50%;
+      justify-self: center;
+    }
+  }
+}
+
+
